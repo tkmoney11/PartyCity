@@ -6,6 +6,7 @@ import com.tyler.api.service.UserService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import org.apache.log4j.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +22,7 @@ public class UserServlet extends HttpServlet {
 
     private ObjectMapper objectMapper = new ObjectMapper();
     private UserService userService = new UserService();
+    private static Logger logger = Logger.getLogger(HttpServlet.class);
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -33,8 +35,6 @@ public class UserServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        response.getWriter().append("Served at: ").append(request.getContextPath());
-//        String action = request.getParameter("action");
         String action = "";
         if (request.getPathInfo() != null) {
             action = request.getPathInfo();
@@ -64,6 +64,7 @@ public class UserServlet extends HttpServlet {
     }
 
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.debug("POST Request made it to " + request.getRequestURI());
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             userService.deleteUser(id);
@@ -77,6 +78,7 @@ public class UserServlet extends HttpServlet {
     }
 
     private void editUserPassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.debug("POST Request made it to " + request.getRequestURI());
         try {
             int id = Integer.parseInt(request.getParameter("id"));
             String newPassword = request.getParameter("newPassword");
@@ -90,11 +92,13 @@ public class UserServlet extends HttpServlet {
     }
 
     private void getAllUsers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.debug("GET Request made it to " + request.getRequestURI());
         response.getWriter().append(userService.getAllUsers().toString());
         response.setStatus(200);
     }
 
     private void addUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.debug("POST Request made it to " + request.getRequestURI());
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
@@ -127,6 +131,7 @@ public class UserServlet extends HttpServlet {
      * Shows User in JSON format
      */
     private void showUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.debug("GET Request made it to " + request.getRequestURI());
         int userId = 0;
         if (request != null) {
             userId = Integer.parseInt(request.getParameter("id"));

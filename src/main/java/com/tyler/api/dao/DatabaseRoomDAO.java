@@ -16,6 +16,11 @@ public class DatabaseRoomDAO {
         super();
     }
 
+    /**
+     *
+     * @param id
+     * @return one room by roomId
+     */
     public Room getRoom(int id) {
         String sqlQuery = "SELECT * from rooms "
             + "WHERE id = " + id;
@@ -35,6 +40,10 @@ public class DatabaseRoomDAO {
         return room;
     }
 
+    /**
+     *
+     * @return all rooms
+     */
     public Map<String, Room> getAllRooms() {
         String sqlQuery = "SELECT * FROM rooms";
         Map<String, Room> rooms = new HashMap<>();
@@ -55,6 +64,12 @@ public class DatabaseRoomDAO {
         return rooms;
     }
 
+    /**
+     *
+     * @param hostId
+     * @param gameType
+     * Adds room to the DB
+     */
     public void addRoom(int hostId, String gameType) {
         try (Connection connection = getConnection()) {
             connection.setAutoCommit(false);
@@ -89,6 +104,12 @@ public class DatabaseRoomDAO {
         }
     }
 
+    /**
+     *
+     * @param roomId
+     * @param newHost
+     * Allows you to edit the host of the
+     */
     public void editHost(int roomId, int newHost) {
         String sqlQuery = "UPDATE rooms "
                 + "SET hostId = ? "

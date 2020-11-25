@@ -1,1 +1,12 @@
-0:0:0:0:0:0:0:1 - - [25/Nov/2020:03:16:43 -0800] "GET /APIv2-0.0.1/RoomServlet/showByName?name=Tyler HTTP/1.1" 200 147 http-bio-8080-exec-2 1505
+0:0:0:0:0:0:0:1 - - [25/Nov/2020:10:21:59 -0800] "GET /APIv2-0.0.1/UserServlet/all HTTP/1.1" 200 762 http-bio-8080-exec-2 1290
+0:0:0:0:0:0:0:1 - - [25/Nov/2020:10:31:20 -0800] "GET /APIv2-0.0.1/UserServlet/all HTTP/1.1" 200 762 http-bio-8080-exec-5 851
+0:0:0:0:0:0:0:1 - - [25/Nov/2020:10:31:36 -0800] "GET /APIv2-0.0.1/UserServlet/?id=22 HTTP/1.1" 200 126 http-bio-8080-exec-6 1698
+0:0:0:0:0:0:0:1 - - [25/Nov/2020:10:32:04 -0800] "GET /APIv2-0.0.1/UserServlet/edit?id=22&newPassword=newPasswordYo HTTP/1.1" 200 17 http-bio-8080-exec-7 952
+0:0:0:0:0:0:0:1 - - [25/Nov/2020:10:32:15 -0800] "GET /APIv2-0.0.1/UserServlet/?id=22 HTTP/1.1" 200 131 http-bio-8080-exec-8 1658
+0:0:0:0:0:0:0:1 - - [25/Nov/2020:10:32:27 -0800] "GET /APIv2-0.0.1/UserServlet/delete?id=22 HTTP/1.1" 200 13 http-bio-8080-exec-9 904
+0:0:0:0:0:0:0:1 - - [25/Nov/2020:10:32:32 -0800] "GET /APIv2-0.0.1/UserServlet/all HTTP/1.1" 200 767 http-bio-8080-exec-10 809
+0:0:0:0:0:0:0:1 - - [25/Nov/2020:10:32:49 -0800] "GET /APIv2-0.0.1/UserServlet/delete?id=22 HTTP/1.1" 200 13 http-bio-8080-exec-10 956
+0:0:0:0:0:0:0:1 - - [25/Nov/2020:10:32:54 -0800] "GET /APIv2-0.0.1/UserServlet/all HTTP/1.1" 200 767 http-bio-8080-exec-10 817
+0:0:0:0:0:0:0:1 - - [25/Nov/2020:10:33:36 -0800] "GET /APIv2-0.0.1/RoomServlet/showByName?name=Tyler HTTP/1.1" 200 147 http-bio-8080-exec-10 839
+0:0:0:0:0:0:0:1 - - [25/Nov/2020:10:34:59 -0800] "GET /APIv2-0.0.1/UserServlet/all HTTP/1.1" 200 767 http-bio-8080-exec-6 829
+0:0:0:0:0:0:0:1 - - [25/Nov/2020:10:36:14 -0800] "GET /APIv2-0.0.1/UserServlet/delete?id=23 HTTP/1.1" 200 13 http-bio-8080-exec-9 951

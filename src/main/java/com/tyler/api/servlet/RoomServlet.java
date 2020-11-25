@@ -62,7 +62,7 @@ public class RoomServlet extends HttpServlet {
     private void showRoom(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int roomId = 0;
         if (request != null) {
-            roomId = Integer.parseInt(request.getParameter("id"));
+            roomId = Integer.parseInt(request.getParameter("roomId"));
         }
 
         try {
@@ -106,7 +106,7 @@ public class RoomServlet extends HttpServlet {
             int actualHostId = Integer.parseInt(hostId);
             try {
                 roomService.addRoom(actualHostId, gameType);
-                response.getWriter().append("user added!");
+                response.getWriter().append("room added!");
                 response.setStatus(200);
             } catch (Exception e) {
                 response.getWriter().append(e.toString());
@@ -125,10 +125,10 @@ public class RoomServlet extends HttpServlet {
         try {
             int roomId = Integer.parseInt(request.getParameter("roomId"));
             roomService.deleteRoom(roomId);
-            response.getWriter().append("user deleted!");
+            response.getWriter().append("room deleted!");
             response.setStatus(200);
         } catch (Exception e) {
-            response.getWriter().append("unable to delete stated user");
+            response.getWriter().append("unable to delete room");
             response.setStatus(500);
             e.printStackTrace();
         }
@@ -139,9 +139,9 @@ public class RoomServlet extends HttpServlet {
             int roomId = Integer.parseInt(request.getParameter("roomId"));
             int newHost = Integer.parseInt(request.getParameter("newHost"));
             roomService.editHost(roomId, newHost);
-            response.getWriter().append("password changed!");
+            response.getWriter().append("host changed!");
         } catch (Exception e) {
-            response.getWriter().append("unable to edit password");
+            response.getWriter().append("unable to edit host");
             response.setStatus(500);
             e.printStackTrace();
         }
