@@ -1,153 +1,317 @@
 package com.tyler.api.servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.tyler.api.models.Room;
-import com.tyler.api.models.User;
 import com.tyler.api.service.RoomService;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Map;
+import java.util.stream.Collectors;
 
-//TODO turn privates int protecteds
+// TODO CHANGE ROOM SERVICE MODEL TO HOST MANY USERS
+// TODO ADD ADMIN FUNCTIONALITY/PRIVILAGES
+
 @WebServlet("/RoomServlet/*")
 public class RoomServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private ObjectMapper objectMapper = new ObjectMapper();
     private RoomService roomService = new RoomService();
+    private static Logger logger = Logger.getLogger(HttpServlet.class);
 
     public RoomServlet() {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        response.getWriter().append("Served at: ").append(request.getContextPath());
-//        String action = request.getParameter("action");
-        String action = "";
-        if (request.getPathInfo() != null) {
-            action = request.getPathInfo();
-        }
 
-        switch (action) {
-            case "/edit":
-                editUserRoomHost(request, response);
-                break;
-            case "/delete":
-                deleteRoom(request, response);
-                break;
-            case "/all":
-                getAllRooms(request, response);
-                break;
-            case "/add":
-                addRoom(request, response);
-                break;
-            case "/showByName":
-                showRoomsByName(request, response);
-                break;
-            default:
-                showRoom(request, response);
-                break;
-        }
-//        String jsonString = objectMapper.writeValueAsString(userService.getAllUsers());
-//        response.getWriter().append(jsonString);
-//        response.setStatus(200);
-
-    }
-
-    private void showRoom(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int roomId = 0;
-        if (request != null) {
-            roomId = Integer.parseInt(request.getParameter("roomId"));
-        }
-
-        try {
-//            Room room = roomService.getRoom(roomId);
-            String jsonString = objectMapper.writeValueAsString(roomService.getRoom(roomId));
-            response.getWriter().append(jsonString);
-            response.setStatus(200);
-        } catch (Exception e) {
-            response.getWriter().append("Something went wrong!");
-            response.setStatus(500);
-            e.printStackTrace();
-        }
-    }
-
-    private void showRoomsByName(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String name = "";
-        if (request != null) {
-            name = request.getParameter("name");
-        }
-
-        try {
-//            Map<String, Room> room = roomService.getRoomByName(name);
-            String jsonString = objectMapper.writeValueAsString(roomService.getRoomByName(name).toString());
-            response.getWriter().append(jsonString);
-            response.setStatus(200);
-        } catch (Exception e) {
-            response.getWriter().append("Something went wrong!");
-            response.setStatus(500);
-            e.printStackTrace();
-        }
-    }
-
-    private void addRoom(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String hostId = request.getParameter("hostId");
-        String gameType = request.getParameter("gameType");
-
-        if (hostId == null || gameType == null || hostId.isEmpty() || gameType.isEmpty()) {
-            response.getWriter().append("Please provide valid parameters");
-            response.setStatus(500);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.info("GET request invoked");
+        HttpSession session = req.getSession(false);
+        if (session != null) {
+            logger.info(session);
+            String action = req.getPathInfo() == null ? "" : req.getPathInfo();
+            switch (action) {
+                case "/all":
+                    getAllRooms(req, resp);
+                    break;
+                case "/showByUsername":
+                    showRoomsByUsername(req, resp);
+                    break;
+                case "":
+                    showRoom(req, resp);
+                    break;
+                default:
+                    resp.getWriter().append("Not an endpoint");
+                    resp.setStatus(500);
+                    break;
+            }
         } else {
-            int actualHostId = Integer.parseInt(hostId);
+            resp.getWriter().append("Request made without login. Please login.");
+            resp.setStatus(500);
+            logger.info("Request made without login");
+        }
+    }
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.info("POST request invoked");
+        HttpSession session = req.getSession(false);
+        if (session != null) {
+            String action = req.getPathInfo() == null ? "" : req.getPathInfo();
+            switch (action) {
+                case "/create":
+                    createRoom(req, resp);
+                    break;
+                case "":
+                    createRoom(req, resp);
+                    break;
+                default:
+                    resp.getWriter().append("Not an endpoint");
+                    resp.setStatus(500);
+                    break;
+            }
+        } else {
+            resp.getWriter().append("Request made without login. Please login.");
+            resp.setStatus(500);
+            logger.info("Request made without login");
+        }
+    }
+
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.info("PUT request invoked");
+        HttpSession session = req.getSession(false);
+        if (session != null) {
+            String action = req.getPathInfo() == null ? "" : req.getPathInfo();
+            switch (action) {
+                case "/editHost":
+                    editRoomHost(req, resp);
+                    break;
+                case "/addUser":
+                    addUser(req, resp);
+                    break;
+                default:
+                    resp.getWriter().append("Not an endpoint");
+                    resp.setStatus(500);
+                    break;
+            }
+        } else {
+            resp.getWriter().append("Request made without login. Please login.");
+            resp.setStatus(500);
+            logger.info("Request made without login");
+        }
+    }
+
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        logger.info("DELETE request invoked");
+        HttpSession session = req.getSession(false);
+        if (session != null) {
+            String action = req.getPathInfo() == null ? "" : req.getPathInfo();
+            switch (action) {
+                case "/deleteRoom":
+                    deleteRoom(req, resp);
+                    break;
+                case "/removeUser":
+                    removeUser(req, resp);
+                    break;
+                default:
+                    resp.getWriter().append("Not an endpoint");
+                    resp.setStatus(500);
+                    break;
+            }
+        } else {
+            resp.getWriter().append("Request made without login. Please login.");
+            resp.setStatus(500);
+            logger.info("Request made without login");
+        }
+    }
+
+    private void showRoom(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        int roomId = 0;
+        if (req != null) {
+            roomId = Integer.parseInt(req.getParameter("id"));
+        }
+
+        if (roomId == 0) {
+            resp.getWriter().append("Please provide an id");
+            resp.setStatus(500);
+        } else {
             try {
-                roomService.addRoom(actualHostId, gameType);
-                response.getWriter().append("room added!");
-                response.setStatus(200);
+                String jsonString = objectMapper.writeValueAsString(roomService.getRoom(roomId));
+                resp.getWriter().append(jsonString);
+                resp.setContentType("application/json");
+                resp.setStatus(200);
             } catch (Exception e) {
-                response.getWriter().append(e.toString());
-                response.setStatus(500);
+                resp.getWriter().append(e.toString());
+                resp.setStatus(500);
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    private void getAllRooms(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        try {
+            resp.getWriter().append(objectMapper.writeValueAsString(roomService.getAllRooms()));
+            resp.setContentType("application/json");
+            resp.setStatus(200);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showRoomsByUsername(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String username = req.getParameter("username");
+        if (username == null) {
+            resp.getWriter().append("Please Provide a username");
+            resp.setStatus(500);
+        } else {
+            try {
+                String name = req.getParameter("username");
+                String jsonString = objectMapper.writeValueAsString(roomService.getRoomByName(name));
+                resp.getWriter().append(jsonString);
+                resp.setStatus(200);
+            } catch (Exception e) {
+                resp.getWriter().append(e.toString());
+                resp.setStatus(500);
                 e.printStackTrace();
             }
         }
     }
 
-    private void getAllRooms(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().append(roomService.getAllRooms().toString());
-        response.setStatus(200);
-    }
+    private void createRoom(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String body = "";
+        if ("POST".equalsIgnoreCase(req.getMethod())) {
+            body = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        }
 
-    private void deleteRoom(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        try {
-            int roomId = Integer.parseInt(request.getParameter("roomId"));
-            roomService.deleteRoom(roomId);
-            response.getWriter().append("room deleted!");
-            response.setStatus(200);
-        } catch (Exception e) {
-            response.getWriter().append("unable to delete room");
-            response.setStatus(500);
-            e.printStackTrace();
+        if (!body.contains("hostId") || !body.contains("game")) {
+            String missingParams = !body.contains("hostId") ? "hostId" : "";
+            missingParams += !body.contains("game") ? " and game" : "";
+            resp.getWriter().append("Please provide " + missingParams);
+            resp.setStatus(500);
+        } else {
+            Room room = objectMapper.readValue(body, Room.class);
+            try {
+                Room addedRoom = roomService.createRoom(room);
+                if (addedRoom.getUsers().size() > 0) {
+                    resp.getWriter().append(objectMapper.writeValueAsString(addedRoom));
+                    resp.setContentType("application/json");
+                    resp.setStatus(200);
+                } else {
+                    resp.getWriter().append("Servlet Failure");
+                    resp.setStatus(500);
+                }
+            } catch (Exception e) {
+                resp.getWriter().append(e.toString());
+                resp.setStatus(500);
+                e.printStackTrace();
+            }
         }
     }
 
-    private void editUserRoomHost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        try {
-            int roomId = Integer.parseInt(request.getParameter("roomId"));
-            int newHost = Integer.parseInt(request.getParameter("newHost"));
-            roomService.editHost(roomId, newHost);
-            response.getWriter().append("host changed!");
-        } catch (Exception e) {
-            response.getWriter().append("unable to edit host");
-            response.setStatus(500);
-            e.printStackTrace();
+    // int uid
+    // int roomId
+    private void addUser(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String body = "";
+        if ("PUT".equalsIgnoreCase(req.getMethod())) {
+            body = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        }
+
+        if (!body.contains("roomId") || !body.contains("userId")) {
+            String missingParams = !body.contains("roomId") ? "roomId" : "";
+            missingParams += !body.contains("userId") ? " and userId" : "";
+            resp.getWriter().append("Please provide " + missingParams);
+            resp.setStatus(500);
+        } else {
+            try {
+                ObjectNode node = objectMapper.readValue(body, ObjectNode.class);
+                Room room = roomService.addUser(node);
+                resp.getWriter().append(objectMapper.writeValueAsString(room));
+                resp.setStatus(200);
+            } catch (Exception e) {
+                resp.getWriter().append(e.toString());
+                resp.setStatus(500);
+                e.printStackTrace();
+            }
         }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+    private void removeUser(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String body = "";
+        if ("DELETE".equalsIgnoreCase(req.getMethod())) {
+            body = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        }
+
+        if (!body.contains("roomId") || !body.contains("userId")) {
+            String missingParams = !body.contains("roomId") ? "roomId" : "";
+            missingParams += !body.contains("userId") ? " and userId" : "";
+            resp.getWriter().append("Please provide " + missingParams);
+            resp.setStatus(500);
+        } else {
+            try {
+                ObjectNode node = objectMapper.readValue(body, ObjectNode.class);
+                Room room = roomService.removeUser(node);
+                resp.getWriter().append(objectMapper.writeValueAsString(room));
+                resp.setStatus(200);
+            } catch (Exception e) {
+                resp.getWriter().append(e.toString());
+                resp.setStatus(500);
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void deleteRoom(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String body = "";
+        if ("DELETE".equalsIgnoreCase(req.getMethod())) {
+            body = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        }
+        if (!body.contains("roomId")) {
+            resp.getWriter().append("Please provide a roomId");
+        } else {
+            try {
+                ObjectNode node = objectMapper.readValue(body, ObjectNode.class);
+                roomService.deleteRoom(node.get("roomId").intValue());
+                resp.getWriter().append("room deleted!");
+                resp.setStatus(200);
+            } catch (Exception e) {
+                resp.getWriter().append("unable to delete room");
+                resp.setStatus(500);
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void editRoomHost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String body = "";
+        if ("PUT".equalsIgnoreCase(req.getMethod())) {
+            body = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        }
+
+        if (!body.contains("roomId") || !body.contains("newHostId")) {
+            String missingParams = !body.contains("roomId") ? "roomId" : "";
+            missingParams += !body.contains("newHostId") ? " and newHostId" : "";
+            resp.getWriter().append("Please provide " + missingParams);
+            resp.setStatus(500);
+        } else {
+            try {
+                ObjectNode node = objectMapper.readValue(body, ObjectNode.class);
+                int roomId = node.get("roomId").intValue();
+                int hostId = node.get("newHostId").intValue();
+                Room room = roomService.editHost(roomId, hostId);
+                resp.getWriter().append(objectMapper.writeValueAsString(room));
+                resp.setStatus(200);
+            } catch (Exception e) {
+                resp.getWriter().append(e.toString());
+                resp.setStatus(500);
+                e.printStackTrace();
+            }
+        }
     }
 }

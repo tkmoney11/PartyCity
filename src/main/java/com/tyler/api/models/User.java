@@ -10,8 +10,9 @@ public class User {
     private String email;
     private String username;
     private String password;
+    private boolean administrator;
 
-    public User(int id, String firstName, String lastName, String email, String username, String password) {
+    public User(int id, String firstName, String lastName, String email, String username, String password, boolean administrator) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -19,6 +20,17 @@ public class User {
         this.email = email;
         this.username = username;
         this.password = password;
+        this.administrator = administrator;
+    }
+
+    public User() {
+        this.id = -1;
+        this.firstName = null;
+        this.lastName = null;
+        this.email = null;
+        this.username = null;
+        this.password = null;
+        this.administrator = false;
     }
 
     public int getId() {
@@ -61,6 +73,14 @@ public class User {
         this.password = password;
     }
 
+    public boolean isAdministrator() {
+        return administrator;
+    }
+
+    public void setAdministrator(boolean administrator) {
+        this.administrator = administrator;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -70,6 +90,9 @@ public class User {
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", administrator=" + administrator +
                 '}';
     }
+
+
 }

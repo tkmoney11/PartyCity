@@ -1,12 +1,17 @@
+com\tyler\api\exceptions\SameHostException.class
 com\tyler\api\servlet\UserServlet.class
 App.class
+com\tyler\api\servlet\LoginServlet.class
 com\tyler\api\dao\DatabaseRoomDAO.class
+com\tyler\api\exceptions\UserNotFoundException.class
 com\tyler\api\dao\DatabaseUserDAO.class
 com\tyler\api\models\Room.class
+com\tyler\api\servlet\StaticResourceServlet.class
 com\tyler\api\servlet\HelloServlet.class
 com\tyler\api\util\JDBCUtility.class
 com\tyler\api\dao\DatabaseHelloServletDAO.class
 com\tyler\api\service\RoomService.class
+com\tyler\api\exceptions\RoomNotFoundException.class
 com\tyler\api\models\User.class
 com\tyler\api\servlet\RoomServlet.class
 com\tyler\api\service\UserService.class
