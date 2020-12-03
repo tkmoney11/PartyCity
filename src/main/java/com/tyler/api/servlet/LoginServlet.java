@@ -99,14 +99,14 @@ public class LoginServlet extends HttpServlet {
             } else {
                 resp.getWriter().append("INCORRECT LOGIN");
                 session.invalidate();
-                resp.setStatus(401);
+                resp.setStatus(500);
             }
 
         // Login failed
         } catch (Exception e) {
             session.invalidate();
             resp.getWriter().append(e.toString());
-            resp.setStatus(400);
+            resp.setStatus(500);
             logger.info(e);
         }
     }

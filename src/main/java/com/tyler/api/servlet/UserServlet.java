@@ -61,6 +61,9 @@ public class UserServlet extends HttpServlet {
                 case "":
                     showUser(req, resp);
                     break;
+                case "/":
+                    showUser(req, resp);
+                    break;
                 default:
                     resp.getWriter().append("Not a valid endpoint");
                     break;
