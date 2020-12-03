@@ -70,7 +70,7 @@ public class UserServlet extends HttpServlet {
             }
         } else {
             resp.getWriter().append("Request made without login. Please login.");
-            resp.setStatus(401);
+            resp.setStatus(500);
             logger.info("Request made without login");
         }
     }
@@ -93,7 +93,7 @@ public class UserServlet extends HttpServlet {
             }
         } else {
             resp.getWriter().append("Request made without login. Please login.");
-            resp.setStatus(401);
+            resp.setStatus(500);
             logger.info("Request made without login");
         }
     }
@@ -113,7 +113,7 @@ public class UserServlet extends HttpServlet {
             }
         } else {
             resp.getWriter().append("Request made without login. Please login.");
-            resp.setStatus(401);
+            resp.setStatus(500);
             logger.info("Request made without login");
         }
     }
@@ -159,7 +159,7 @@ public class UserServlet extends HttpServlet {
             }
         } else {
             resp.getWriter().append("Request made without login. Please login.");
-            resp.setStatus(401);
+            resp.setStatus(500);
             logger.info("Request made without login");
         }
     }

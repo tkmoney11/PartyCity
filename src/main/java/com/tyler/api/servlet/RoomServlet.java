@@ -44,7 +44,7 @@ public class RoomServlet extends HttpServlet {
                 case "/showByUsername":
                     showRoomsByUsername(req, resp);
                     break;
-                case "":
+                case "/":
                     showRoom(req, resp);
                     break;
                 default:
