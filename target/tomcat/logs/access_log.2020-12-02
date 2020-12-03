@@ -1,8 +1,0 @@
-0:0:0:0:0:0:0:1 - - [02/Dec/2020:22:25:57 -0800] "POST /APIv2-0.0.1/LoginServlet HTTP/1.1" 200 23 http-bio-8080-exec-2 2241
-0:0:0:0:0:0:0:1 - - [02/Dec/2020:22:26:22 -0800] "PUT /APIv2-0.0.1/UserServlet/editPass HTTP/1.1" 500 50 http-bio-8080-exec-3 11
-0:0:0:0:0:0:0:1 - - [02/Dec/2020:22:26:31 -0800] "PUT /APIv2-0.0.1/UserServlet/flipAdmin HTTP/1.1" 500 240 http-bio-8080-exec-5 85
-0:0:0:0:0:0:0:1 - - [02/Dec/2020:22:26:37 -0800] "PUT /APIv2-0.0.1/UserServlet/flipAdmin HTTP/1.1" 200 137 http-bio-8080-exec-7 2648
-0:0:0:0:0:0:0:1 - - [02/Dec/2020:22:27:05 -0800] "PUT /APIv2-0.0.1/UserServlet/editPass HTTP/1.1" 200 145 http-bio-8080-exec-8 2584
-0:0:0:0:0:0:0:1 - - [02/Dec/2020:22:38:41 -0800] "GET /APIv2-0.0.1/UserServlet?id=2 HTTP/1.1" 401 41 http-bio-8080-exec-1 1
-0:0:0:0:0:0:0:1 - - [02/Dec/2020:22:39:11 -0800] "POST /APIv2-0.0.1/LoginServlet HTTP/1.1" 200 23 http-bio-8080-exec-1 1720
-0:0:0:0:0:0:0:1 - - [02/Dec/2020:22:39:23 -0800] "GET /APIv2-0.0.1/UserServlet?id=2 HTTP/1.1" 200 137 http-bio-8080-exec-3 827
