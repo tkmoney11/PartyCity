@@ -104,3 +104,5 @@ note: will not authorize editing unless user has administrator status or is the 
   note: currently will return success remove user even if user was never present in room to begin with.
   ```
   
+  
+  this is a test
