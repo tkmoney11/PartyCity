@@ -238,6 +238,8 @@ public class UserServlet extends HttpServlet {
                 int id = node.get("id").intValue();
                 User sessionUser = (User) session.getAttribute("user");
                 System.out.println(sessionUser);
+                // can only edit user password if session user is the same as edit user id
+                // OR if session user is administrator
                 if (id == sessionUser.getId() || sessionUser.isAdministrator()) {
                     String newPassword = node.get("newPassword").toString().replace("\"", "");
                     User user = userService.editUserPassword(id, newPassword);
