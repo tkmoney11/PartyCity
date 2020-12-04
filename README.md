@@ -1,5 +1,6 @@
 # PartyCity
 API for Revature
+http://18.222.140.73:8080/APIv2-0.0.1/
 
 ## Endpoints
 ### LoginServlet/*
