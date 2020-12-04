@@ -49,6 +49,7 @@ public class LoginServlet extends HttpServlet {
 
         // Create session
         HttpSession session = req.getSession();
+        session.setMaxInactiveInterval(15*60); // 15 min timeout for session
 
         // CODE SNIPPET TO EXTRACT BODY FROM FORM-DATA
         // Map field-value pairs for user.

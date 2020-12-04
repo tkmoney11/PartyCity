@@ -1,6 +1,7 @@
 package com.tyler.api.servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/HelloServlet")
 public class HelloServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
+    private static org.apache.log4j.Logger logger = Logger.getLogger(HttpServlet.class);
     private ObjectMapper objectMapper = new ObjectMapper();
 
     /**
@@ -31,6 +32,7 @@ public class HelloServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.info("HelloServlet");
         // TODO Auto-generated method stub
         String Hello  ="Hello woRld@?@";
         response.getWriter().append(Hello);
