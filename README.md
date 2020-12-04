@@ -1,7 +1,20 @@
 # PartyCity
 API for Revature
 http://18.222.140.73:8080/APIv2-0.0.1/
-
+<br><br>
+__FOR TIANYUAN__
+```
+{
+  "id" : 9,
+  "firstName" : "TianYuan",
+  "lastName" : "Deng",
+  "email" : "tianyuandeng@gmail.com",
+  "username" : "tyuan",
+  "password": "whateverIWant",
+  "administrator": false
+}
+```
+<br>
 ## Endpoints
 ### LoginServlet/*
 ## POST
