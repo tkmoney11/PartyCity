@@ -8,16 +8,12 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LogoutServlet extends HttpServlet {
-    @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
-
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
         session.invalidate();
-        resp.getWriter().append("Please use a POST request");
-        resp.setStatus(400);
+        resp.getWriter().append("Successfully logged out");
+        resp.setStatus(200);
     }
 }
