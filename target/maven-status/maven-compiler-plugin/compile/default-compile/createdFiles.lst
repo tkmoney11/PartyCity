@@ -2,6 +2,7 @@ com\tyler\api\exceptions\SameHostException.class
 com\tyler\api\servlet\UserServlet.class
 App.class
 com\tyler\api\servlet\LoginServlet.class
+com\tyler\api\servlet\LogoutServlet.class
 com\tyler\api\dao\DatabaseRoomDAO.class
 com\tyler\api\exceptions\UserNotFoundException.class
 com\tyler\api\dao\DatabaseUserDAO.class

@@ -40,10 +40,9 @@ public class JDBCUtility {
          * The connection string is formatted like jdbc:<driver protocol>:<connection details>
          * jdbc:postgresql://localhost:5432/postgres
          */
+        // Local host is doing shet
 //        String url = "jdbc:postgresql://localhost:5433/postgres";
-        String url = "jdbc:postgresql://revature-p0.chf3ragisi4l.us-east-2.rds.amazonaws.com:5432/?user=postgres&password=postgres";
-        String username = "postgressss";
-        String password = "icangarunteeyoudidntnoticeispelledguaranteewrong";
+         String url = System.getenv("DB_URL");
 
         /*
          * Not really good practice to store directly in the code
@@ -51,14 +50,12 @@ public class JDBCUtility {
          * Ideally we should store them in url, username, password, in environment variables
          */
 
-        // String url = System.getEnv("DB_URL");
-        // String username = System.getEnv("DB_USERNAME");
-        // String password = System.getEnv("DB_PASSWORD");
+
 
         Connection connection = null;
 
         DriverManager.registerDriver(new Driver());
-        connection = DriverManager.getConnection(url, username, password);
+        connection = DriverManager.getConnection(url);
         return connection;
     }
 }
