@@ -31,8 +31,16 @@ Status Code: 200
 INCORRECT LOGIN
 ```
 Status Code: 500
+<br><br>
+
+### LogoutServlet/*
+## POST - No parameters
 <br>
-  
+```
+Successfully logged out
+```
+<br><br>
+
 
 ### UserServlet/*
 ## GET
