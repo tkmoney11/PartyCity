@@ -36,10 +36,10 @@ Status Code: 500
 ### LogoutServlet/*
 ## POST - No parameters
 <br>
+
 ```
 Successfully logged out
 ```
-<br><br>
 
 
 ### UserServlet/*
