@@ -11,9 +11,14 @@ public class LogoutServlet extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(false);
-        session.invalidate();
-        resp.getWriter().append("Successfully logged out");
-        resp.setStatus(200);
+        try {
+            HttpSession session = req.getSession(false);
+            session.invalidate();
+            resp.getWriter().append("Successfully logged out");
+            resp.setStatus(200);
+        } catch (Exception e) {
+            resp.getWriter().append("Server issues");
+            resp.setStatus(500);
+        }
     }
 }
