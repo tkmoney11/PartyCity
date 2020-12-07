@@ -151,10 +151,10 @@ public class UserServlet extends HttpServlet {
             String action = req.getPathInfo() == null ? "" : req.getPathInfo();
             switch (action) {
                 case "/delete":
-                    deleteUser(req, resp);
+                    deleteUser(req, resp, session);
                     break;
                 case "":
-                    deleteUser(req, resp);
+                    deleteUser(req, resp, session);
                     break;
             }
         } else {
@@ -200,7 +200,7 @@ public class UserServlet extends HttpServlet {
     }
 
     //TODO read from body not params
-    private void deleteUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void deleteUser(HttpServletRequest req, HttpServletResponse resp, HttpSession session) throws ServletException, IOException {
         logger.debug("DELETE Request made it to " + req.getRequestURI());
         String body = "";
         if ("DELETE".equalsIgnoreCase(req.getMethod())) {
@@ -210,9 +210,15 @@ public class UserServlet extends HttpServlet {
         try {
             ObjectNode node = objectMapper.readValue(body, ObjectNode.class);
             int id = node.get("id").intValue();
-            userService.deleteUser(id);
-            resp.getWriter().append("user deleted! (Whether or not user existed)");
-            resp.setStatus(200);
+            User sessionUser = (User) session.getAttribute("user");
+            if (sessionUser.isAdministrator() || sessionUser.getId() == id) {
+                userService.deleteUser(id);
+                resp.getWriter().append("user deleted! (Whether or not user existed)");
+                resp.setStatus(200);
+            } else {
+                resp.getWriter().append("You are not authorized to delete this user");
+                resp.setStatus(500);
+            }
         } catch (Exception e) {
             resp.getWriter().append("unable to delete user");
             resp.setStatus(500);
