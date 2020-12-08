@@ -41,6 +41,14 @@
         <url-pattern>/StaticServlet/*</url-pattern>
     </servlet-mapping>
 
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>precluded methods</web-resource-name>
+            <url-pattern>/static/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint />
+    </security-constraint>
     <filter>
         <filter-name>CorsFilter</filter-name>
         <filter-class>org.apache.catalina.filters.CorsFilter</filter-class>
