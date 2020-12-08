@@ -44,6 +44,7 @@ public class HelloServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.getWriter().append("Goodbye World");
+        response.setContentType("application/json");
     }
 
 }
