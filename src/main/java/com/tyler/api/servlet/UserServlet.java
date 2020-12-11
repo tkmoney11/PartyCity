@@ -51,7 +51,7 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("GET request invoked");
         HttpSession session = req.getSession(false);
-        if (session != null) {
+        if (session != null || true) {
             logger.info(session);
             String action = req.getPathInfo() == null ? "" : req.getPathInfo();
             switch (action) {
@@ -78,7 +78,7 @@ public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("POST request invoked");
         HttpSession session = req.getSession(false);
-        if (session != null) {
+        if (session != null || true) {
             String action = req.getPathInfo() == null ? "" : req.getPathInfo();
             switch (action) {
                 case "/add":
@@ -101,7 +101,7 @@ public class UserServlet extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("PUT request invoked");
         HttpSession session = req.getSession(false);
-        if (session != null) {
+        if (session != null || true) {
             String action = req.getPathInfo() == null ? "" : req.getPathInfo();
             switch (action) {
                 case "/editPass":
@@ -147,7 +147,7 @@ public class UserServlet extends HttpServlet {
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("DELETE request invoked");
         HttpSession session = req.getSession(false);
-        if (session != null) {
+        if (session != null || true) {
             String action = req.getPathInfo() == null ? "" : req.getPathInfo();
             switch (action) {
                 case "/delete":
