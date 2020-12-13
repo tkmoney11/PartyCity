@@ -15,7 +15,7 @@ public class StaticResourceServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        System.out.println(req.getRequestURI());
-        String resource = request.getRequestURI().replace("APIv2-0.0.1", "");
+        String resource = request.getRequestURI().replace("/APIv2-0.0.1", "");
         System.out.println(resource);
         if(resource != null ) {
 			switch (resource) {
@@ -27,6 +27,11 @@ public class StaticResourceServlet extends HttpServlet {
 					break;
 				case "/RoomServlet/all":
 					request.getRequestDispatcher("/static/src/view-room.html").include(request, response);
+					response.setContentType("text/html");
+					response.setStatus(200);
+					break;
+				case "/UserServlet/all":
+					request.getRequestDispatcher("/static/src/view-user.html").include(request, response);
 					response.setContentType("text/html");
 					response.setStatus(200);
 					break;
@@ -72,6 +77,12 @@ public class StaticResourceServlet extends HttpServlet {
 				case "/js/viewRoom":
 					System.out.println("invoked forwarding of productlist.js");
 					request.getRequestDispatcher("/static/src/js/viewroom.js").include(request, response);
+					response.setContentType("text/javascript");
+					response.setStatus(200);
+					break;
+				case "/js/viewUser":
+					System.out.println("invoked forwarding of productlist.js");
+					request.getRequestDispatcher("/static/src/js/viewuser.js").include(request, response);
 					response.setContentType("text/javascript");
 					response.setStatus(200);
 					break;

@@ -38,6 +38,32 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>StaticServlet</servlet-name>
-        <url-pattern>/StaticServlet/*</url-pattern>
+        <url-pattern></url-pattern>
+        <url-pattern>/RoomServlet/all</url-pattern>
+        <url-pattern>/RoomServlet/create</url-pattern>
+        <url-pattern>/RoomServlet/deleteRoom</url-pattern>
+        <url-pattern>/RoomServlet/addUser</url-pattern>
+        <url-pattern>/RoomServlet/removeUser</url-pattern>
+        <url-pattern>/Login</url-pattern>
+        
+        <url-pattern>/styles/stylesheet</url-pattern>
+        
+        <url-pattern>/js/login</url-pattern>
+        <url-pattern>/js/viewRoom</url-pattern>
+        <url-pattern>/js/createRoom</url-pattern>
+        <url-pattern>/js/deleteRoom</url-pattern>
+        <url-pattern>/js/addRoomUser</url-pattern>
+        <url-pattern>/js/deleteRoomUser</url-pattern>
+        <url-pattern>/js/componentInjector</url-pattern>
+        <url-pattern>/js/router</url-pattern>
+        <url-pattern>/img/2.jpg</url-pattern>
+        <url-pattern>/img/4.webp</url-pattern>
+        <url-pattern>/img/7.jpg</url-pattern>
+        <url-pattern>/img/background.webp</url-pattern>
+        <url-pattern>/img/77.jpg</url-pattern>
+        <url-pattern>/img/login2.jpg</url-pattern>
+        <url-pattern>/img/logo.png</url-pattern>
+        
+        
     </servlet-mapping>
 </web-app>
