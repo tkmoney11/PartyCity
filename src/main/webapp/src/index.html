@@ -3,23 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PartyCity</title>
     <link rel="stylesheet" href="css/styles.css">
-
+    <title>PartyCity</title>
 </head>
 <body>
-    <div id="navbar-container"></div>
-    <button id="home-button">Home</button>
-    <button id="viewroom-button">ViewRoom</button>
-    <button id="createRoom-button">CreateRoom</button>
-    <button id="login-button">Login</button>
-
-    
-    <div id="container"></div>    
-    <div id="footer-container"></div>
-    <script src = "./js/componentInjector.js" type="module"></script>
-
-    
+    <header>
+        <nav id="navbar">
+            <div class="my-container">
+                <h1 class="logo"><img src="img/logo.png" alt="logo"><a href="index.html" ></a></h1>
+                <ul>
+                    <li><a href="index.html" class="current">Home</a></li>
+                    <li><a href="create-room.html" >CreateRoom</a></li>
+                    <li><a href="view-room.html">ViewRoom</a></li>
+                    <li><a href="view-user.html">ViewUser</a></li>
+                    <li><a href="Login.html">Login</a></li>
+                    <li><a href="Logout.html">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div id="showcase">
+        <div class="my-container">
+            <div id="showcase-content">
+                <h1>Welcome to Party City! </h1>
+                <p>Our application designed for creating communities. Users communicate with voice calls, video calls, text messaging, media and files in private chats or as part of communities called "ChatRoom."</p>
+                <p>Login to check more information.</p>
+                <button class="btn"><a href="login.html">Login
+                </a></button>
+            </div>
+        </div>
+    </div>
+    <footer id="main-footer">
+        <p>Revature Inc. &copy; 2020</p>
+    </footer>
     
 </body>
-</html> 
+</html>
