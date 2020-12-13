@@ -1,0 +1,247 @@
+/* Reset Default */
+*{
+    margin : 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    
+    line-height: 1.7em;
+    background-color: peru;
+
+}
+a {
+    text-decoration: none;
+    color: teal;
+}
+
+h1, h2, h3 {
+    padding: 20px;
+    line-height: 1.2em;
+}
+
+/* Utility Classes */
+.my-container {
+    
+    max-width: 85%;
+    margin: auto;
+    overflow: auto;
+    padding: 0 20px;
+}
+
+
+.btn {
+    display: inline-block;
+    font-size: 18px;
+    background: lightsteelblue;
+    color: white;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Navbar */
+
+#navbar {
+    background-color:#333333;
+    color: white;
+    overflow: auto;
+}
+
+#navbar a {
+    color: white;
+}
+
+#navbar .logo {
+    float: left;
+    padding-top: 20px;
+}
+#navbar img {
+    height: 40px;
+}
+#navbar ul { 
+    float: right;
+    list-style: none;
+}
+
+#navbar ul li {
+    float: left;
+}
+#navbar ul li a {
+    display: block;
+    padding: 30px;
+    text-align: center ;
+}
+
+#navbar ul li a:hover, #navbar ul li a.current {
+    background: dimgrey;
+    color: orange;
+}
+
+
+/* SHOWCASE */
+#showcase{
+    
+    background: url('../img/2.jpg') no-repeat center center;
+    background-color: peru;
+    height: 1000px;
+    width: 100%;
+    padding: 0 50px;
+}
+
+
+#showcase-cart {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+    margin-top: 70px;
+    padding:  20px;
+    border-radius: 20px;
+}
+#showcase #showcase-content {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+    margin-top: 130px;
+    padding:  50px;
+    border-radius: 20px;
+}
+#showcase #showcase-content h1 {
+    font-size: 30px;
+}
+
+
+
+/* Room List */
+#room-background-img,#user-background-img{
+    background: url('../img/4.webp') no-repeat center center;
+    background-color: peru;
+    height: 1000px;
+    width: 100%;
+    padding: 0 50px;
+    position: absolute;
+}
+#room-list-main, #user-list-main {
+    margin: auto;
+    width: 70%;
+    
+    margin-bottom:  100px;
+}
+
+#tlist-main h1{
+    font-size: 30px;
+}
+#room-list-main table, #user-list-main table{
+    margin: auto;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+}
+
+#room-list-main table thead tr, #user-list-main table thead tr{
+    background-color: orange;
+    color: white;
+    text-align: left;
+    font-weight: bold;
+}
+
+#room-list-main table th, 
+#room-list-main table td,
+#user-list-main table th,
+#user-list-main table td{ 
+    padding: 10px 20px;
+}
+
+#room-list-main table tr {
+    border-bottom: 1px solid #ddd;
+    
+}
+
+
+tr:hover {
+    background-color: lightslategray;
+    color: white;
+}
+/* Login */
+#login-background-img
+{
+    background: url('../img/login2.jpg') no-repeat center center;
+    background-color: peru;
+    height: 900px;
+    width: 100%;
+    padding: 0 50px;
+    position: absolute;
+}
+/* Room Form */
+#form-background-img {
+    background: url('../img/77.jpg') no-repeat center center;
+    background-color: peru;
+    height: 930px;
+    width: 100%;
+    padding: 0 50px;
+    position: absolute;
+}
+#room-form-main {
+    margin: auto;
+    width: 50%;
+    margin-top: 100px;
+    background: mediumslateblue;
+    padding: 20px;
+    color: #fff;
+    border-radius: 20px;
+}
+
+#room-form-main .form-wrap {
+    padding: 15px 15px;
+}
+
+#room-form-main .form-wrap h1,
+#room-form-main .form-wrap p {
+    text-align: center;
+}
+
+#room-form-main .form-wrap .form-group {
+    margin-top: 15px;
+}
+
+#room-form-main .form-wrap label {
+    display: block;
+}
+
+#room-form-main .form-wrap .form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: #555 solid 1px;
+}
+
+#room-form-main .form-wrap .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: #555 solid 1px;
+    border-radius: 5px;
+}
+
+#room-form-main .form-wrap button {
+    width: 100%;
+    display: block;
+    padding: 10px;
+    margin-top: 50px;
+    border-radius: 10px;
+}
+
+#room-form-main .form-wrap button:hover {
+    background: #555;
+}
+/* Footer */
+#main-footer {
+    text-align: center;
+    background: #333333;;
+    color: white;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 20px;
+}
