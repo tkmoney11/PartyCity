@@ -16,10 +16,11 @@ const placeRoom = function (id, hostId, gameType, user) {
 
 const xhr = new XMLHttpRequest();
 console.log("credentials: " + xhr.withCredentials);
-xhr.withCredentials = true;
+
 const getRoom = function () {
-console.log(sessionStorage.key(0));
-    
+    console.log(sessionStorage.key(0));
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
     // axios.get('http://18.222.140.73:8080/APIv2-0.0.1/RoomServlet/all',{withCredentials: true})
     // .then(function(res){console.log(res)})
    

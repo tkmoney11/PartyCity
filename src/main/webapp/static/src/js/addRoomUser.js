@@ -1,8 +1,8 @@
 const onClick = function(event) {
     event.preventDefault();
-    const roomID = document.getElementById('roomID');
+    const roomID = document.getElementById('room-id');
     var roomiD = parseInt(roomID.value, 10);
-    const yourID = document.getElementById('roomID');
+    const yourID = document.getElementById('your-id');
     var youriD = parseInt(yourID.value, 10);
     if (roomID.value && yourID.value) {
         const objid = {
