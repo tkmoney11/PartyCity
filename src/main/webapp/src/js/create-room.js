@@ -2,7 +2,7 @@ const onClick = function (event) {
     event.preventDefault();
     const hostId = document.getElementById('hostId');
     const gameType = document.getElementById('gametype');
-    alert("right here" +gameType.value);
+    
     if (hostId.value) {
         const obj = {
             hostId: hostId.value,

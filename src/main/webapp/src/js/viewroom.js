@@ -27,9 +27,7 @@ console.log(sessionStorage.key(0));
         if (this.readyState == 4 && this.status == 200) {
 
             const data = JSON.parse(xhr.responseText);
-            console.log(data)
-            console.log("1");
-            console.log("hid+"+(data[1].users));
+            
             console.log("3 " + Object.keys(data).length);
             const keyLength = Object.keys(data).length -1;
             console.log(typeof keyLength);

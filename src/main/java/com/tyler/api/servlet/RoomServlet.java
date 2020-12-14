@@ -282,6 +282,7 @@ public class RoomServlet extends HttpServlet {
                 resp.setStatus(200);
             } catch (Exception e) {
                 resp.getWriter().append("unable to delete room");
+                
                 resp.setStatus(500);
                 e.printStackTrace();
             }
