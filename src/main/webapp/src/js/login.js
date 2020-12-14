@@ -22,11 +22,11 @@ const onClick = function (event) {
                 let msg = xhr.responseText
                 alert("Login Successfully" );
                 
-                window.location.href = '/APIv2-0.0.1';
+                window.location.href = 'index.html';
 
             } else if (this.readyState == 4) {
                 alert("Please try again.");
-                window.location.href = '/APIv2-0.0.1/Login';
+                window.location.href = 'Login.html';
             }
         }
 
