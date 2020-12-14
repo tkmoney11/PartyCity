@@ -51,7 +51,7 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("GET request invoked");
         HttpSession session = req.getSession(false);
-        if (session != null || true) {
+        if (session != null ) {
             logger.info(session);
             String action = req.getPathInfo() == null ? "" : req.getPathInfo();
             switch (action) {
