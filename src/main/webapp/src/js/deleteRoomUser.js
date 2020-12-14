@@ -2,7 +2,7 @@ const onClick = function(event) {
     event.preventDefault();
     const roomID = document.getElementById('roomID');
     var roomiD = parseInt(roomID.value, 10);
-    const hisID = document.getElementById('roomID');
+    const hisID = document.getElementById('hisID');
     var hisiD = parseInt(hisID.value, 10);
     if (roomID.value && hisID.value) {
         const objid = {

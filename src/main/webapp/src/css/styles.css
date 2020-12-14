@@ -84,7 +84,7 @@ h1, h2, h3 {
 /* SHOWCASE */
 #showcase{
     
-    background: url('../img/2.jpg') no-repeat center center;
+    background: url('/APIv2-0.0.1/img/2.jpg') no-repeat center center;
     background-color: peru;
     height: 1000px;
     width: 100%;
@@ -116,7 +116,7 @@ h1, h2, h3 {
 
 /* Room List */
 #room-background-img,#user-background-img{
-    background: url('../img/4.webp') no-repeat center center;
+    background: url('/APIv2-0.0.1/img/4.webp') no-repeat center center;
     background-color: peru;
     height: 1000px;
     width: 100%;
@@ -166,7 +166,7 @@ tr:hover {
 /* Login */
 #login-background-img
 {
-    background: url('../img/login2.jpg') no-repeat center center;
+    background: url('/APIv2-0.0.1/img/login2.jpg') no-repeat center center;
     background-color: peru;
     height: 900px;
     width: 100%;
@@ -175,7 +175,7 @@ tr:hover {
 }
 /* Room Form */
 #form-background-img {
-    background: url('../img/77.jpg') no-repeat center center;
+    background: url('/APIv2-0.0.1/img/77.jpg') no-repeat center center;
     background-color: peru;
     height: 930px;
     width: 100%;

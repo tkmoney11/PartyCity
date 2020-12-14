@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/APIv2-0.0.1/styles/stylesheet">
     <title>PartyCity</title>
 </head>
 
@@ -12,11 +12,11 @@
     <header>
         <nav id="navbar">
             <div class="my-container">
-                <h1 class="logo"><img src="img/logo.png" alt="logo"><a href="index.html"></a></h1>
+                <h1 class="logo"><img src="/APIv2-0.0.1/img/logo.png" alt="logo"><a href="/APIv2-0.0.1"></a></h1>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="view-room.html">ViewRoom</a></li>
-                    <li><a href="addRoomUser.html" class="current">AddUser</a></li>
+                    <li><a href="/APIv2-0.0.1">Home</a></li>
+                    <li><a href="/APIv2-0.0.1/RoomServlet/all">ViewRoom</a></li>
+                    <li><a href="/APIv2-0.0.1/RoomServlet/addUser" class="current">AddUser</a></li>
                 </ul>
             </div>
         </nav>
@@ -30,12 +30,12 @@
                 <form>
                     <div class="form-group">
                         <!-- User name input -->
-                        <label for="pirate-name">Room ID</label>
+                        <label for="roomID">Room ID</label>
                         <input type="number" id="roomID" name="quantity" min="1" max="100">
                     </div>
                     <div class="form-group">
                         <!-- User name input -->
-                        <label for="pirate-name">Your ID</label>
+                        <label for="yourID">Your ID</label>
                         <input type="number" id="yourID" name="quantity" min="1" max="100">
                     </div>
 
@@ -47,7 +47,7 @@
     <footer id="main-footer">
         <p>Revature Inc. &copy; 2020</p>
     </footer>
-    <script src="js/addroomuser.js"></script>
+    <script src="/APIv2-0.0.1/js/addRoomUser"></script>
 </body>
 
 </html>
