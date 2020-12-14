@@ -1,3 +1,4 @@
+
 const onClick = function(event) {
     event.preventDefault();
     const roomID = document.getElementById('roomID');
